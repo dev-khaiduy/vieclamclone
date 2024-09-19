@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/logo.png" type="image/x-icon">
+    <title>Profile - Vieclam24h.vn</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var username = localStorage.getItem('username'); // Lấy thông tin username từ Local Storage
+            var userActions = document.getElementById('user-actions'); // Phần tử sẽ thay đổi nội dung
+    
+            if (username) {
+                // Nếu người dùng đã đăng nhập, hiển thị email và nút đăng xuất
+                userActions.innerHTML = `
+                    <a href="updateprofile.html" id="update-profile-link" class="header-e btn btn-bvb update-profile-btn">Cập nhật hồ sơ</a>
+                    <span class="separator">|</span>
+                    <span class="header-e btn btn-bvb username-display">Xin chào, ${username}</span>
+                    <span class="separator">|</span>
+                    <a href="#" id="logout-link" class="header-e btn btn-bvb logout-btn">Thoát</a>
+                `;
+    
+                // Xử lý sự kiện khi người dùng nhấn nút Đăng xuất
+                document.getElementById('logout-link').addEventListener('click', function(event) {
+                    event.preventDefault(); // Ngăn hành động mặc định
+                    localStorage.removeItem('username'); // Xóa username khỏi Local Storage
+                    window.location.reload(); // Tải lại trang để cập nhật giao diện
+                });
+            }
+        });
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .container {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .header-container {
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background-color: #5b2dc3;
+            height: 100vh;
+            padding: 20px;
+            color: white;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar ul li {
+            margin: 20px 0;
+        }
+
+        .sidebar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .sidebar ul li a:hover {
+            color: #d3b3ff;
+            text-decoration: underline;
+        }
+
+        /* Main content */
+        .main-content {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .main-content h1 {
+            font-size: 26px;
+            margin-bottom: 20px;
+            color: #5b2dc3;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            transition: box-shadow 0.3s;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .card h2 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #6f42c1;
+        }
+
+        .card input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            transition: border-color 0.3s ease;
+        }
+
+        .card input:focus {
+            border-color: #6f42c1;
+        }
+
+        .card button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px; /* Added space between buttons */
+            transition: background-color 0.3s ease;
+        }
+
+        .card button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Spacing and alignment for dropdowns and buttons */
+        .applied-jobs-table th, .applied-jobs-table td {
+            padding: 20px 15px;
+            text-align: left;
+            vertical-align: middle;
+        }
+
+        .applied-jobs-table td select {
+            margin-right: 10px; /* Space between dropdown and buttons */
+        }
+
+        .applied-jobs-table td button {
+            margin-left: 10px; /* Adds space between the buttons */
+        }
+
+        /* Status dropdown style */
+        .status-dropdown {
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        /* Profile info styling */
+        .profile-info {
+            margin-top: 20px;
+        }
+
+        .profile-info div {
+            margin-bottom: 15px;
+        }
+
+        .profile-info label {
+            font-weight: bold;
+            color: #5b2dc3;
+        }
+
+        .profile-info span {
+            margin-left: 10px;
+            color: #333;
+        }
+
+        /* Button styles */
+        .edit-button {
+            background-color: #ffc107;
+            color: white;
+            border: none;
+            padding: 7px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .edit-button:hover {
+            background-color: #e0a800;
+        }
+
+        header {
+            background-color: #6f42c1;
+            color: white;
+            padding: 15px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .logo img {
+            height: 50px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #d3b3ff;
+        }
+
+        nav ul .login-register {
+            margin-left: auto;
+        }
+
+        /* Responsiveness */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+            }
+
+            .main-content {
+                padding: 15px;
+            }
+
+            .profile-info div {
+                margin-bottom: 10px;
+            }
+
+            .card button, .edit-button {
+                padding: 8px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+   <!-- Header -->
+   <header>
+    <div class="header-container">
+        <div class="logo">
+            <img src="assets/logo.png" alt="Vieclam24h.vn">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="#">Tìm việc</a></li>
+                <li><a href="#">Cẩm nang nghề nghiệp</a></li>
+                <li class="login-register" id="user-actions">
+                    <a href="login.html" id="login-link">Đăng ký / Đăng nhập</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+    <!-- Container with Sidebar and Profile -->
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <ul>
+                <li><a href="updateprofile.html">Tài khoản của bạn</a></li>
+                <li><a href="CVcheck.html">Hồ sơ của bạn</a></li>
+                <li><a href="#">Việc làm đã ứng tuyển</a></li>
+                <li><a href="vieclamdaluu.html">Việc làm đã lưu</a></li>
+            </ul>
+        </div>
+
+        <!-- Main content -->
+      <!-- Main content -->
+            <!-- Main content -->
+<!-- Main content -->
+        <div class="main-content">
+            <h1>
+                Việc làm bạn đã ứng tuyển
+            </h1>
+
+            <!-- Applied Jobs Section -->
+            <div class="card">
+             
+
+                <!-- Applied Jobs Table -->
+                <table class="applied-jobs-table">
+                    <thead>
+                        <tr>
+                            <th>Tên việc làm</th>
+                            <th>Hồ sơ ứng tuyển</th>
+                            <th>Ngày nộp</th>
+                            <th>Trạng thái</th>
+                            <th>Phản hồi về NTD</th>
+                            <th></th> <!-- Extra column for "Đẩy" button -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Marketing</td>
+                            <td>Hồ sơ từng bước</td>
+                            <td>15/09/2024</td>
+                            <td>
+                                <select class="status-dropdown">
+                                    <option value="submitted">Hồ sơ được tải</option>
+                                    <option value="pending">Đang chờ xét duyệt</option>
+                                    <option value="accepted">Đã duyệt</option>
+                                    <option value="rejected">Đã từ chối</option>
+                                </select>
+                            </td>
+                            <td>
+                                <button class="edit-button">Lựa chọn</button>
+                            </td>
+                            <td>
+                                <button class="push-button">Đẩy trạng thái hồ sơ về Panel</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Kế toán</td>
+                            <td>Hồ sơ hoàn chỉnh</td>
+                            <td>10/09/2024</td>
+                            <td>
+                                <select class="status-dropdown">
+                                    <option value="submitted">Hồ sơ được tải</option>
+                                    <option value="pending">Đang chờ xét duyệt</option>
+                                    <option value="accepted">Đã duyệt</option>
+                                    <option value="rejected">Đã từ chối</option>
+                                </select>
+                            </td>
+                            <td>
+                                <button class="edit-button">Lựa chọn</button>
+                            </td>
+                            <td>
+                                <button class="push-button">Đẩy trạng thái hồ sơ về Panel</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

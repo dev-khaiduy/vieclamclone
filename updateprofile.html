@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/logo.png" type="image/x-icon">
+    <title>Profile - Vieclam24h.vn</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var username = localStorage.getItem('username'); // Lấy thông tin username từ Local Storage
+            var userActions = document.getElementById('user-actions'); // Phần tử sẽ thay đổi nội dung
+    
+            if (username) {
+                // Nếu người dùng đã đăng nhập, hiển thị email và nút đăng xuất
+                userActions.innerHTML = `
+                    <a href="updateprofile.html" id="update-profile-link" class="header-e btn btn-bvb update-profile-btn">Cập nhật hồ sơ</a>
+                    <span class="separator">|</span>
+                    <span class="header-e btn btn-bvb username-display">Xin chào, ${username}</span>
+                    <span class="separator">|</span>
+                    <a href="#" id="logout-link" class="header-e btn btn-bvb logout-btn">Thoát</a>
+                `;
+    
+                // Xử lý sự kiện khi người dùng nhấn nút Đăng xuất
+                document.getElementById('logout-link').addEventListener('click', function(event) {
+                    event.preventDefault(); // Ngăn hành động mặc định
+                    localStorage.removeItem('username'); // Xóa username khỏi Local Storage
+                    window.location.reload(); // Tải lại trang để cập nhật giao diện
+                });
+            }
+        });
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .container {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .header-container {
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background-color: #5b2dc3;
+            height: 100vh;
+            padding: 20px;
+            color: white;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar ul li {
+            margin: 20px 0;
+        }
+
+        .sidebar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .sidebar ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Main content */
+        .main-content {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .main-content h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .card h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .card input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .card button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .card button:hover {
+            background-color: #0056b3;
+        }
+
+        .profile-info {
+            margin-top: 20px;
+        }
+
+        .profile-info div {
+            margin-bottom: 10px;
+        }
+
+        .profile-info label {
+            font-weight: bold;
+        }
+
+        .profile-info span {
+            margin-left: 10px;
+        }
+
+        /* Button styles */
+        .edit-button {
+            background-color: #ffc107;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .edit-button:hover {
+            background-color: #e0a800;
+        }
+
+        header {
+            background-color: #6f42c1;
+            color: white;
+            padding: 15px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .logo img {
+            height: 50px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        nav ul .login-register {
+            margin-left: auto;
+        }
+
+    </style>
+</head>
+<body>
+
+   <!-- Header -->
+   <header>
+    <div class="header-container">
+        <div class="logo">
+            <img src="assets/logo.png" alt="Vieclam24h.vn">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="#">Tìm việc</a></li>
+                <li><a href="#">Cẩm nang nghề nghiệp</a></li>
+                <li class="login-register" id="user-actions">
+                    <a href="login.html" id="login-link">Đăng ký / Đăng nhập</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+    <!-- Container with Sidebar and Profile -->
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <ul>
+                <li><a href="#">Tài khoản của bạn</a></li>
+                <li><a href="CVcheck.html">Hồ sơ của bạn</a></li>
+                <li><a href="vieclamdaungtuyen.html">Việc làm đã ứng tuyển</a></li>
+                <li><a href="vieclamdaluu.html">Việc làm đã lưu</a></li>
+            </ul>
+        </div>
+
+        <!-- Main content -->
+        <div class="main-content">
+            <h1>Tài khoản của bạn</h1>
+
+            <!-- Registration Info Card -->
+            <div class="card">
+                <h2>Thông tin đăng ký</h2>
+                <div>
+                    <label>Email:</label>
+                    <span>chientranabc456@gmail.com</span>
+                    <!-- <button class="edit-button">Sửa email</button> -->
+                </div>
+                <div>
+                    <label>Mật khẩu:</label>
+                    <span>********</span>
+                    <!-- <button class="edit-button">Đổi mật khẩu</button> -->
+                </div>
+            </div>
+
+            <!-- Personal Info Card -->
+            <div class="card">
+                <h2>Thông tin cá nhân</h2>
+                <div class="profile-info">
+                    <div>
+                        <label>Họ tên:</label>
+                        <span>Trần Minh Chiến</span>
+                    </div>
+                    <div>
+                        <label>Số điện thoại:</label>
+                        <span>0987654321</span>
+                    </div>
+                    <div>
+                        <label>Ngày sinh:</label>
+                        <span>31/08/2002</span>
+                    </div>
+                    <div>
+                        <label>Địa chỉ:</label>
+                        <span>TP.HCM - 133 Tân Hương, P. Tân Quý, Q. Tân Phú</span>
+                    </div>
+                    <!-- <button class="edit-button">Cập nhật</button> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

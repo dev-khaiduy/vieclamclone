@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/logo.png" type="image/x-icon">
+    <title>Đăng ký - Vieclam24h.vn</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .container {
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        header {
+            background-color: #6f42c1;
+            color: white;
+            padding: 15px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .logo img {
+            height: 50px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        nav ul .login-register {
+            margin-left: auto;
+        }
+
+        /* Register Form */
+        .register-container {
+            width: 100%;
+            max-width: 400px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .register-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .register-container input[type="email"], 
+        .register-container input[type="tel"], 
+        .register-container input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .register-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .register-container button:hover {
+            background-color: #218838;
+        }
+
+        .register-container .login-link {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .register-container .login-link a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .register-container .login-link a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="assets/banner.png" alt="Vieclam24h.vn">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Trang chủ</a></li>
+                    <li><a href="#">Tìm việc</a></li>
+                    <li><a href="#">Cẩm nang nghề nghiệp</a></li>
+                    <li class="login-register"><a href="login.html">Đăng nhập</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Register Form -->
+    <div class="register-container">
+        <h2>Đăng ký</h2>
+        <form id="register-form">
+            <input type="email" id="email" placeholder="Nhập email" required>
+            <input type="tel" id="phone" placeholder="Nhập số điện thoại" required>
+            <input type="password" id="password" placeholder="Nhập mật khẩu" required>
+            <button type="submit">Đăng ký</button>
+            <div class="login-link">
+                <p>Bạn đã có tài khoản? <a href="login.html">Đăng nhập</a></p>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('register-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Ngăn chặn hành động mặc định của form (submit)
+            
+            var email = document.getElementById('email').value;
+            var phone = document.getElementById('phone').value;
+            var password = document.getElementById('password').value;
+
+            // Bạn có thể thêm logic xử lý đăng ký tại đây, ví dụ gửi thông tin đến server
+
+            alert('Đăng ký thành công!');
+            window.location.href = "login.html"; // Điều hướng về trang đăng nhập sau khi đăng ký
+        });
+    </script>
+</body>
+</html>

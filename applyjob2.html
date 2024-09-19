@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/logo.png" type="image/x-icon">
+    <title>Vieclam24h.vn - Trang chủ</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var username = localStorage.getItem('username'); // Lấy thông tin username từ Local Storage
+            var userActions = document.getElementById('user-actions'); // Phần tử sẽ thay đổi nội dung
+    
+            if (username) {
+                userActions.innerHTML = `
+                    <a href="update-profile.html" id="update-profile-link" class="header-e btn btn-bvb update-profile-btn">Cập nhật hồ sơ</a>
+                    <span class="separator">|</span>
+                    <span class="header-e btn btn-bvb username-display">Xin chào, ${username}</span>
+                    <span class="separator">|</span>
+                    <a href="#" id="logout-link" class="header-e btn btn-bvb logout-btn">Thoát</a>
+                `;
+                document.getElementById('logout-link').addEventListener('click', function(event) {
+                    event.preventDefault();
+                    localStorage.removeItem('username');
+                    window.location.reload();
+                });
+            }
+        });
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .container {
+            width: 90%;
+            margin: 0 auto; 
+        }
+
+        header {
+            background-color: #6f42c1;
+            color: white;
+            padding: 15px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .logo img {
+            height: 50px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        nav ul .login-register {
+            margin-left: auto;
+        }
+
+        /* Apply Job Section Styles */
+        .job-application-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .company-logo {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+        }
+
+        .job-title-details {
+            flex: 1;
+            margin-left: 20px;
+        }
+
+        .job-title-details h1 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .job-title-details p {
+            font-size: 16px;
+            color: #777;
+            margin-bottom: 10px;
+        }
+
+        .job-info {
+            display: flex;
+            gap: 15px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .job-info i {
+            color: #5b2dc3;
+            margin-right: 5px;
+        }
+
+        .job-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .apply-button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .apply-button:hover {
+            background-color: #0056b3;
+        }
+
+        .favorite-button {
+            background-color: transparent;
+            border: none;
+            font-size: 20px;
+            color: #007bff;
+            cursor: pointer;
+        }
+
+        .favorite-button:hover {
+            color: #0056b3;
+        }
+
+        /* Job Details Section */
+        .job-details-section {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .job-details-section h2 {
+            margin-bottom: 15px;
+            font-size: 20px;
+            color: #333;
+        }
+
+        .job-details-section ul {
+            list-style: none;
+        }
+
+        .job-details-section ul li {
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        /* Suggested Jobs Section */
+        .suggested-jobs {
+            margin: 20px 0;
+        }
+
+        .suggested-jobs h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .suggested-job-list {
+            display: flex;
+            gap: 15px;
+        }
+
+        .suggested-job-card {
+            background-color: white;
+            padding: 15px;
+            width: 30%;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .urgent-badge {
+            background-color: #ff4d4d;
+            color: white;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-size: 12px;
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+
+        .suggested-job-card h4 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .suggested-job-card p {
+            font-size: 14px;
+            color: #777;
+            margin-bottom: 10px;
+        }
+
+        .suggested-job-card .job-info {
+            display: flex;
+            gap: 10px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .suggested-job-card .job-info i {
+            color: #5b2dc3;
+            margin-right: 5px;
+        }
+         /* Footer */
+         footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        footer .footer-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        footer .footer-links .footer-link {
+            width: 30%;
+            text-align: left;
+        }
+
+        footer .footer-links ul {
+            list-style: none;
+        }
+
+        footer .footer-links ul li {
+            margin-bottom: 10px;
+        }
+
+        footer .footer-links ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        footer .footer-info p {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="assets/banner.png" alt="Vieclam24h.vn">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Trang chủ</a></li>
+                    <li><a href="#">Tìm việc</a></li>
+                    <li><a href="#">Cẩm nang nghề nghiệp</a></li>
+                    <li class="login-register" id="user-actions">
+                        <a href="login.html" id="login-link">Đăng ký / Đăng nhập</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Apply Job Section -->
+    <div class="container">
+        <div class="job-application-card">
+            <div class="job-header">
+                <img src="assets/apply2.png" alt="GIFTlife Logo" class="company-logo">
+                <div class="job-title-details">
+                    <h1>Nhân Viên Kế Toán Tổng Hợp</h1>
+                    <p>Công Ty TNHH Một Thành Viên Dịch Vụ Kế Toán Tin Học Sao Mai</p>
+                    <div class="job-info">
+                        <span><i class="fa fa-money"></i> Mức lương: 12 - 20 triệu</span>
+                        <span><i class="fa fa-calendar"></i> Hạn nộp hồ sơ: 01/10/2024</span>
+                        <span><i class="fa fa-map-marker"></i> Khu vực tuyển: TP.HCM</span>
+                    </div>
+                </div>
+            </div>
+            <div class="job-actions">
+                <!-- Redirect to a new page for applying -->
+                <a href="sendjob2.html" class="apply-button-link">
+                    <button class="apply-button"><i class="fa fa-paper-plane"></i> Nộp hồ sơ</button>
+                </a>
+                <!-- Heart button remains for favorite functionality -->
+                <button class="favorite-button"><i class="fa fa-heart"></i></button>
+            </div>
+        </div>
+
+        <!-- Job Details Section -->
+        <div class="job-details-section">
+            <h2>Thông tin chung</h2>
+            <ul>
+                <li><strong>Ngày đăng:</strong> 05/09/2024</li>
+                <li><strong>Cấp bậc:</strong> Chuyên viên - nhân viên</li>
+                <li><strong>Số lượng tuyển:</strong> 2</li>
+                <li><strong>Hình thức làm việc:</strong> Toàn thời gian cố định</li>
+                <li><strong>Yêu cầu kinh nghiệm:</strong> 1 năm</li>
+                <li><strong>Ngành nghề:</strong> Kế toán/Kiểm toán/Hành chính - Thư ký</li>
+            </ul>
+        </div>
+
+        <!-- Suggested Jobs Section -->
+        <div class="suggested-jobs">
+            <h3>Việc làm tương tự cho bạn</h3>
+            <div class="suggested-job-list">
+                <!-- Suggested Job 1 -->
+                <div class="suggested-job-card">
+                    <span class="urgent-badge">Gấp</span>
+                    <h4>Nhân Viên Sale Online</h4>
+                    <p>Công Ty TNHH Thực Phẩm Doxaco</p>
+                    <div class="job-info">
+                        <span><i class="fa fa-map-marker"></i> TP.HCM</span>
+                        <span><i class="fa fa-money"></i> 13 - 18 triệu</span>
+                        <span><i class="fa fa-briefcase"></i> 2 năm</span>
+                    </div>
+                </div>
+
+                <!-- Suggested Job 2 -->
+                <div class="suggested-job-card">
+                    <span class="urgent-badge">Gấp</span>
+                    <h4>Nhân Viên Kinh Doanh</h4>
+                    <p>Công Ty TNHH Healthy Homes</p>
+                    <div class="job-info">
+                        <span><i class="fa fa-map-marker"></i> TP.HCM</span>
+                        <span><i class="fa fa-money"></i> 15 - 20 triệu</span>
+                        <span><i class="fa fa-briefcase"></i> 1 năm</span>
+                    </div>
+                </div>
+
+                <!-- Suggested Job 3 -->
+                <div class="suggested-job-card">
+                    <h4>Sales & Marketing Executive</h4>
+                    <p>Công Ty TNHH Thương Mại và Dịch Vụ</p>
+                    <div class="job-info">
+                        <span><i class="fa fa-map-marker"></i> TP.HCM</span>
+                        <span><i class="fa fa-money"></i> 18 - 20 triệu</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-links">
+                <div class="footer-link">
+                    <h3>Về chúng tôi</h3>
+                    <ul>
+                        <li><a href="#">Giới thiệu</a></li>
+                        <li><a href="#">Chính sách bảo mật</a></li>
+                        <li><a href="#">Điều khoản dịch vụ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-link">
+                    <h3>Người tìm việc</h3>
+                    <ul>
+                        <li><a href="#">Tạo CV</a></li>
+                        <li><a href="#">Tìm việc</a></li>
+                        <li><a href="#">Cẩm nang nghề nghiệp</a></li>
+                    </ul>
+                </div>
+                <div class="footer-link">
+                    <h3>Nhà tuyển dụng</h3>
+                    <ul>
+                        <li><a href="#">Đăng tin tuyển dụng</a></li>
+                        <li><a href="#">Quản lý hồ sơ</a></li>
+                        <li><a href="#">Liên hệ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-info">
+                <p>&copy; 2024 Vieclam24h.vn. All rights reserved.</p>
+                <p>Hotline: HCM: (028) 7109 2424 | HN: (024) 7309 2424</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

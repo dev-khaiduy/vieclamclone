@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/logo.png" type="image/x-icon">
+    <title>Hồ sơ của bạn - Vieclam24h.vn</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var username = localStorage.getItem('username'); // Lấy thông tin username từ Local Storage
+            var userActions = document.getElementById('user-actions'); // Phần tử sẽ thay đổi nội dung
+    
+            if (username) {
+                // Nếu người dùng đã đăng nhập, hiển thị email và nút đăng xuất
+                userActions.innerHTML = `
+                    <a href="updateprofile.html" id="update-profile-link" class="header-e btn btn-bvb update-profile-btn">Cập nhật hồ sơ</a>
+                    <span class="separator">|</span>
+                    <span class="header-e btn btn-bvb username-display">Xin chào, ${username}</span>
+                    <span class="separator">|</span>
+                    <a href="#" id="logout-link" class="header-e btn btn-bvb logout-btn">Thoát</a>
+                `;
+    
+                // Xử lý sự kiện khi người dùng nhấn nút Đăng xuất
+                document.getElementById('logout-link').addEventListener('click', function(event) {
+                    event.preventDefault(); // Ngăn hành động mặc định
+                    localStorage.removeItem('username'); // Xóa username khỏi Local Storage
+                    window.location.reload(); // Tải lại trang để cập nhật giao diện
+                });
+            }
+        });
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .container {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .header-container {
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background-color: #5b2dc3;
+            height: 100vh;
+            padding: 20px;
+            color: white;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar ul li {
+            margin: 20px 0;
+        }
+
+        .sidebar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .sidebar ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Main content */
+        .main-content {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .main-content h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .info-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .info-card h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .info-card .profile-info div {
+            margin-bottom: 10px;
+        }
+
+        .profile-info label {
+            font-weight: bold;
+        }
+
+        .profile-info span {
+            margin-left: 10px;
+        }
+
+        .toggle-button {
+            margin-left: 20px;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 34px;
+            height: 20px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            border-radius: 20px;
+            transition: 0.4s;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 14px;
+            width: 14px;
+            border-radius: 50%;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: 0.4s;
+        }
+
+        input:checked + .slider {
+            background-color: #28a745;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(14px);
+        }
+
+        /* Jobs section */
+        .jobs-section {
+            margin-top: 30px;
+        }
+
+        .job-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .job-item {
+            background-color: white;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .job-item h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .job-item p {
+            color: #777;
+            margin-bottom: 10px;
+        }
+
+        .job-item .salary {
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        .job-item .location {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .job-item .apply-button {
+            display: inline-block;
+            padding: 8px 15px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .apply-button:hover {
+            background-color: #0056b3;
+        }
+
+        header {
+            background-color: #6f42c1;
+            color: white;
+            padding: 15px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header .logo img {
+            height: 50px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        nav ul .login-register {
+            margin-left: auto;
+        }
+
+
+    </style>
+</head>
+<body>
+
+   <!-- Header -->
+   <header>
+    <div class="header-container">
+        <div class="logo">
+            <img src="assets/logo.png" alt="Vieclam24h.vn">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="#">Tìm việc</a></li>
+                <li><a href="#">Cẩm nang nghề nghiệp</a></li>
+                <li class="login-register" id="user-actions">
+                    <a href="login.html" id="login-link">Đăng ký / Đăng nhập</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+    <!-- Container with Sidebar and Profile -->
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <ul>
+                <li><a href="updateprofile.html">Tài khoản của bạn</a></li>
+                <li><a href="#">Hồ sơ của bạn</a></li>
+                <li><a href="vieclamdaungtuyen.html">Việc làm đã ứng tuyển</a></li>
+                <li><a href="vieclamdaluu.html">Việc làm đã lưu</a></li>
+            </ul>
+        </div>
+
+        <!-- Main content -->
+        <div class="main-content">
+            <h1>Hồ sơ của bạn</h1>
+
+            <!-- Resume Section -->
+            <div class="info-card">
+                <h2>Hồ sơ trực tuyến</h2>
+                <div class="profile-info">
+                    <div>
+                        <span>Nhân Viên Phục Vụ</span>
+                        <span class="toggle-button">
+                            <label class="toggle-switch">
+                                <input type="checkbox">
+                                <span class="slider"></span>
+                            </label>
+                            <small>Cho phép tìm kiếm</small>
+                        </span>
+                    </div>
+                    <button class="edit-button">Cập nhật hồ sơ</button>
+                </div>
+            </div>
+
+            <!-- Attached Resume -->
+            <div class="info-card">
+                <h2>Hồ sơ đính kèm</h2>
+                <div class="profile-info">
+                    <div>
+                        <span>Cộng Tác Viên Nhập Liệu</span>
+                        <span class="toggle-button">
+                            <label class="toggle-switch">
+                                <input type="checkbox">
+                                <span class="slider"></span>
+                            </label>
+                            <small>Cho phép tìm kiếm</small>
+                        </span>
+                    </div>
+                    <button class="edit-button">Cập nhật hồ sơ</button>
+                </div>
+            </div>
+
+            <!-- Jobs Recommendation Section -->
+            <div class="jobs-section">
+                <h2>Việc làm gợi ý</h2>
+                <div class="job-list">
+                    <div class="job-item">
+                        <h3>Chuyên viên tuyển dụng - Ngành F&B</h3>
+                        <p>Công ty TNHH Dịch vụ ăn uống Tinh Hoa</p>
+                        <p class="salary">12-15 triệu</p>
+                        <p class="location">TP.HCM</p>
+                        <a href="#" class="apply-button">Xem chi tiết</a>
+                    </div>
+
+                    <div class="job-item">
+                        <h3>Sales & Marketing Executive</h3>
+                        <p>Công ty TNHH Thương Mại và Dịch Vụ Nhà hàng</p>
+                        <p class="salary">18-20 triệu</p>
+                        <p class="location">TP.HCM</p>
+                        <a href="#" class="apply-button">Xem chi tiết</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

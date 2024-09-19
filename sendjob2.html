@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ứng tuyển - Chuyên Viên Marketing</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            padding: 20px;
+        }
+
+        .application-container {
+            background-color: white;
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+            border-radius: 10px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .job-details {
+            margin-bottom: 20px;
+        }
+
+        .job-details h2 {
+            font-size: 20px;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .job-details p {
+            color: #777;
+            margin-bottom: 20px;
+        }
+
+        .job-option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 2px solid #eaeaea;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .job-option input[type="radio"] {
+            margin-right: 15px;
+        }
+
+        .job-option.selected {
+            border-color: #007bff;
+            background-color: #f4f9ff;
+        }
+
+        .job-option .status {
+            margin-left: auto;
+            font-weight: bold;
+            color: #00c853;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .form-footer {
+            margin-top: 20px;
+        }
+
+        .form-footer p {
+            font-size: 14px;
+            color: #777;
+            margin-bottom: 15px;
+        }
+
+        .form-footer a {
+            color: #007bff;
+            text-decoration: underline;
+        }
+
+        .form-footer input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        .submit-btn {
+            background-color: #6f42c1;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background-color: #5b2dc3;
+        }
+
+        .notification-toggle {
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .notification-toggle label {
+            margin-left: 10px;
+        }
+
+        .notification-toggle input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="application-container">
+        <h1>Ứng tuyển vào vị trí</h1>
+        <div class="job-details">
+            <h2>Nhân Viên Kế Toán Tổng Hợp</h2>
+            <p>Công Ty TNHH Một Thành Viên Dịch Vụ Kế Toán Tin Học Sao Mai</p>
+        </div>
+
+        <!-- Job Options (Hồ sơ lựa chọn) -->
+        <div class="job-option selected">
+            <input type="radio" name="job-option" id="job1" checked>
+            <label for="job1">
+                <strong>Nhân viên kế toán</strong><br>
+                Hồ sơ trực tuyến • 16/09/2024 • <a href="#">Xem hồ sơ</a>
+            </label>
+            <span class="status">Đã duyệt</span>
+        </div>
+
+        <div class="job-option">
+            <input type="radio" name="job-option" id="job2">
+            <label for="job2">
+                <strong>Nhân viên Marketing</strong><br>
+                Hồ sơ đính kèm • 29/08/2024 • <a href="#">Xem hồ sơ</a>
+            </label>
+            <span class="status">Đã duyệt</span>
+        </div>
+
+        <!-- <div class="job-option">
+            <input type="radio" name="job-option" id="job3">
+            <label for="job3">
+                <strong>Hồ sơ tìm việc gấp</strong><br>
+                <a href="#">Xem hồ sơ</a>
+            </label>
+        </div> -->
+
+        <!-- Form for personal details -->
+        <div class="form-group">
+            <label for="fullname">Họ và tên *</label>
+            <input type="text" id="fullname" value="Trần Minh Chiến" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" value="chientrancao456@gmail.com" required>
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Số điện thoại *</label>
+            <input type="tel" id="phone" value="0932627607" required>
+        </div>
+
+        <!-- Form footer and submit button -->
+        <div class="form-footer">
+            <p>Bằng việc nhấn nút nộp hồ sơ tôi đồng ý chia sẻ thông tin cá nhân của mình với nhà tuyển dụng theo các <a href="#">Điều khoản sử dụng</a>, <a href="#">Chính sách bảo mật</a> và <a href="#">Chính sách dữ liệu cá nhân</a> của Việc Làm 24h</p>
+
+            <div class="notification-toggle">
+                <input type="checkbox" id="notification">
+                <label for="notification">Nhận thông báo việc làm tương tự</label>
+            </div>
+
+            <button class="submit-btn">Nộp hồ sơ</button>
+        </div>
+    </div>
+
+</body>
+</html>
