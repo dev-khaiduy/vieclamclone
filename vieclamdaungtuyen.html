@@ -6,44 +6,28 @@
     <link rel="icon" href="assets/logo.png" type="image/x-icon">
     <title>Việc làm đã ứng tuyển | Vieclam24h</title>
     <script>
-        // Đối với nút "Marketing"
-document.getElementById('push-button-marketing').addEventListener('click', function() {
-    // // Lấy thông tin từ hàng "Marketing"
-    // const row = document.getElementById('push-button-marketing').closest('tr');
-    // const jobTitle = row.querySelector('td:nth-child(1)').textContent.trim();
-    // const resumeType = row.querySelector('td:nth-child(2)').textContent.trim();
-    // const submissionDate = row.querySelector('td:nth-child(3)').textContent.trim();
-    // const status = row.querySelector('.status-dropdown').value;
+        document.addEventListener('DOMContentLoaded', function() {
+            // Đối với nút "Marketing"
+            document.getElementById('push-button-marketing').addEventListener('click', function() {
+                console.log("Nút 'push-button-marketing' đã được nhấn!");
 
-    // Gọi hàm smartech với thông tin đã lấy
-    smartech('identify', username);
-    smartech('dispatch', 'Push status', {
-        // jobTitle: jobTitle,
-        // resumeType: resumeType,
-        // submissionDate: submissionDate,
-        // status: status
-    });
-});
+                // Gọi hàm smartech với thông tin đã lấy
+                smartech('identify', username);
+                smartech('dispatch', 'Push status', {});
+                console.log("Đẩy thành công");
+            });
 
-// // Đối với nút "Kế toán"
-// document.getElementById('push-button-accounting').addEventListener('click', function() {
-//     // Lấy thông tin từ hàng "Kế toán"
-//     const row = document.getElementById('push-button-accounting').closest('tr');
-//     const jobTitle = row.querySelector('td:nth-child(1)').textContent.trim();
-//     const resumeType = row.querySelector('td:nth-child(2)').textContent.trim();
-//     const submissionDate = row.querySelector('td:nth-child(3)').textContent.trim();
-//     const status = row.querySelector('.status-dropdown').value;
+            // Đối với nút "Kế toán"
+            document.getElementById('push-button-accounting').addEventListener('click', function() {
+                console.log("Nút 'push-button-accounting' đã được nhấn!");
 
-//     // Gọi hàm smartech với thông tin đã lấy
-//     smartech('identify', username);
-//     smartech('dispatch', 'Form Submit', {
-//         jobTitle: jobTitle,
-//         resumeType: resumeType,
-//         submissionDate: submissionDate,
-//         status: status
-//     });
-// });
-
+                // Gọi hàm smartech với thông tin đã lấy
+                smartech('identify', username);
+                smartech('dispatch', 'Push status', {});
+                console.log("Đẩy thành công");
+            });
+        });
+    </script>
     </script>
       <script src='//cdnt.netcoresmartech.com/smartechclient.js'></script>
       <script>
@@ -57,29 +41,6 @@ document.getElementById('push-button-marketing').addEventListener('click', funct
             });
         });
       </script>
-      <script>
-      document.querySelectorAll('.push-button').forEach(function(button) {
-        button.addEventListener('click', function() {
-            // Lấy hàng tương ứng của nút "push"
-            const row = button.closest('tr');
-    
-            // Lấy thông tin từ hàng đó
-            const jobTitle = row.querySelector('td:nth-child(1)').textContent.trim();
-            const resumeType = row.querySelector('td:nth-child(2)').textContent.trim();
-            const submissionDate = row.querySelector('td:nth-child(3)').textContent.trim();
-            const status = row.querySelector('.status-dropdown').value;
-    
-            // Thực hiện hàm smartech với thông tin đã lấy
-            smartech('identify', username);
-            smartech('dispatch', 'Form Submit', {
-                jobTitle: jobTitle,
-                resumeType: resumeType,
-                submissionDate: submissionDate,
-                status: status
-            });
-        });
-    });
-    </script>
     <style>
         * {
             margin: 0;
