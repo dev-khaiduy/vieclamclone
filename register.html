@@ -160,7 +160,10 @@
             // gọi hàm sign up
             smartech('identify',email);
             smartech('dispatch','sign up',{});
-            
+            smartech('contact', '83', {
+                'pk^email': email,
+                'mobile': phone,
+                });
             alert('Đăng ký thành công!');
             window.location.href = "login.html"; // Điều hướng về trang đăng nhập sau khi đăng ký
         });

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="assets/logo.png" type="image/x-icon">
-    <title>Vieclam24h.vn - Trang chủ</title>
+    <title>Chuyên Viên Marketing | Vieclam24h</title>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var username = localStorage.getItem('username'); // Lấy thông tin username từ Local Storage
@@ -31,7 +31,14 @@
     smartech('create', 'ADGMOT35CHFLVDHBJNIG50K96BSUH1PDDQFBSPLEV97HGG26AH0G' );
     smartech('register', '504ea8ca2cb4400285e24f2d3705750b');
     smartech('identify', '');
+    document.addEventListener('DOMContentLoaded', function() {
+            smartech('dispatch', 'Card Registration', {
+                'url': window.location.href,
+                'title': document.title
+            });
+        });
     </script>
+    
     <style>
         * {
             margin: 0;
