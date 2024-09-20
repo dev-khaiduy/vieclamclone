@@ -6,6 +6,44 @@
     <title>Ứng tuyển - Chuyên Viên Marketing</title>
     <script src='//cdnt.netcoresmartech.com/smartechclient.js'></script>
     <script>
+                document.addEventListener('DOMContentLoaded', function() {
+            // Lắng nghe sự kiện click của nút "Nộp hồ sơ"
+            document.querySelector('.submit-btn').addEventListener('click', function(event) {
+                event.preventDefault(); // Ngăn chặn hành vi submit mặc định
+
+                // Lấy thông tin tên công việc và tên công ty
+                const jobTitle = document.querySelector('.job-details h2').textContent.trim();
+                const companyName = document.querySelector('.job-details p').textContent.trim();
+
+                // Lấy lựa chọn hồ sơ (tên hồ sơ, thời gian nộp)
+                const selectedJobOption = document.querySelector('input[name="job-option"]:checked').nextElementSibling;
+                const selectedJobOptionTitle = selectedJobOption.querySelector('strong').textContent.trim();
+                const selectedJobOptionDetails = selectedJobOption.innerHTML.split('•')[1].trim(); // Thời gian nộp hồ sơ (lấy từ phần sau "•")
+
+                // Kiểm tra trạng thái checkbox "Nhận thông báo việc làm tương tự"
+                const notification = document.getElementById('notification').checked; // true nếu được chọn, false nếu không
+
+                // Gửi thông tin qua smartech hoặc xử lý khác
+                smartech('dispatch', 'Job Application', {
+                    jobTitle: jobTitle, // Tên công việc
+                    companyName: companyName, // Tên công ty
+                    selectedJobOptionTitle: selectedJobOptionTitle, // Hồ sơ lựa chọn (ví dụ: Nhân Viên Kế Toán)
+                    submissionTime: selectedJobOptionDetails, // Thời gian nộp hồ sơ
+                    notification: notification // Trạng thái nhận thông báo việc làm (true/false)
+                });
+
+                // In ra console để kiểm tra
+                console.log("Thông tin ứng tuyển:", {
+                    jobTitle: jobTitle,
+                    companyName: companyName,
+                    selectedJobOptionTitle: selectedJobOptionTitle,
+                    submissionTime: selectedJobOptionDetails,
+                    notification: notification // True nếu đã chọn, false nếu bỏ chọn
+                });
+            });
+        });
+    </script>
+    <script>
     smartech('create', 'ADGMOT35CHFLVDHBJNIG50K96BSUH1PDDQFBSPLEV97HGG26AH0G' );
     smartech('register', '504ea8ca2cb4400285e24f2d3705750b');
     smartech('identify', '');
@@ -173,14 +211,6 @@
             </label>
             <span class="status">Đã duyệt</span>
         </div>
-
-        <!-- <div class="job-option">
-            <input type="radio" name="job-option" id="job3">
-            <label for="job3">
-                <strong>Hồ sơ tìm việc gấp</strong><br>
-                <a href="#">Xem hồ sơ</a>
-            </label>
-        </div> -->
 
         <!-- Form for personal details -->
         <div class="form-group">
