@@ -10,6 +10,55 @@
     smartech('register', '504ea8ca2cb4400285e24f2d3705750b');
     smartech('identify', '');
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    // Lắng nghe sự kiện click của nút "Nộp hồ sơ"
+    document.querySelector('.submit-btn').addEventListener('click', function(event) {
+        event.preventDefault(); // Ngăn chặn hành vi submit mặc định
+
+        // Lấy thông tin tên công việc và tên công ty
+        const jobTitle = document.querySelector('.job-details h2').textContent.trim();
+        const companyName = document.querySelector('.job-details p').textContent.trim();
+
+        // Lấy lựa chọn hồ sơ (tên hồ sơ)
+        const selectedJobOption = document.querySelector('input[name="job-option"]:checked').nextElementSibling;
+        const selectedJobOptionTitle = selectedJobOption.querySelector('strong').textContent.trim();
+
+        // Lấy ngày giờ hiện tại (để làm thời gian nộp hồ sơ)
+        const currentDate = new Date();
+        const formattedDate = currentDate.toLocaleString('vi-VN', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit'
+        });
+
+        // Kiểm tra trạng thái checkbox "Nhận thông báo việc làm tương tự"
+        const notification = document.getElementById('notification').checked; // true nếu được chọn, false nếu không
+
+        // Gửi thông tin qua smartech hoặc xử lý khác
+        smartech('dispatch', 'Job Application', {
+            jobTitle: jobTitle, // Tên công việc
+            companyName: companyName, // Tên công ty
+            selectedJobOptionTitle: selectedJobOptionTitle, // Hồ sơ lựa chọn (ví dụ: Nhân Viên Kế Toán)
+            submissionTime: formattedDate, // Thời gian nộp hồ sơ là thời gian hiện tại
+            notification: notification // Trạng thái nhận thông báo việc làm (true/false)
+        });
+
+        // In ra console để kiểm tra toàn bộ thông tin
+        console.log("Thông tin ứng tuyển:", {
+            jobTitle: jobTitle,
+            companyName: companyName,
+            selectedJobOptionTitle: selectedJobOptionTitle,
+            submissionTime: formattedDate, // Thời gian nộp hồ sơ là thời gian hiện tại
+            notification: notification // True nếu đã chọn, false nếu bỏ chọn
+        });
+    });
+});
+
+    </script>
     <style>
         * {
             margin: 0;

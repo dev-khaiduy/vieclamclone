@@ -29,6 +29,44 @@
             }
         });
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    // Lấy tất cả các nút "Lưu công việc"
+    const saveButtons = document.querySelectorAll('.simple-button');
+
+    // Lắng nghe sự kiện click của mỗi nút
+    saveButtons.forEach(function(button, index) {
+        button.addEventListener('click', function() {
+            // Lấy thông tin từ công việc tương ứng
+            const jobCard = button.closest('.job-card');
+            const jobTitle = jobCard.querySelector('h3').textContent.trim();
+            const companyName = jobCard.querySelector('p').textContent.trim();
+            const salary = jobCard.querySelector('.fa-money').parentElement.textContent.trim();
+            const location = jobCard.querySelector('.fa-map-marker').parentElement.textContent.trim();
+            const deadline = jobCard.querySelector('.fa-calendar').parentElement.textContent.trim();
+
+            // Đẩy thông tin qua smartech
+            smartech('dispatch', 'Save Job', {
+                jobTitle: jobTitle, // Tên công việc
+                companyName: companyName, // Tên công ty
+                salary: salary, // Mức lương
+                location: location, // Địa điểm
+                deadline: deadline // Hạn nộp hồ sơ
+            });
+
+            // In ra console để kiểm tra
+            console.log("Công việc đã lưu:", {
+                jobTitle: jobTitle,
+                companyName: companyName,
+                salary: salary,
+                location: location,
+                deadline: deadline
+            });
+        });
+    });
+});
+
+    </script>
       <script src='//cdnt.netcoresmartech.com/smartechclient.js'></script>
       <script>
       smartech('create', 'ADGMOT35CHFLVDHBJNIG50K96BSUH1PDDQFBSPLEV97HGG26AH0G' );
@@ -285,6 +323,29 @@ nav ul li a:hover {
 nav ul .login-register {
     margin-left: auto;
 }
+/* Thiết kế nút bấm đơn giản */
+.simple-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+/* Khi di chuột qua nút */
+.simple-button:hover {
+    background-color: #0056b3;
+}
+
+/* Khi nhấn nút */
+.simple-button:active {
+    background-color: #003f7f;
+}
+
+
 
 /* Responsiveness */
 @media (max-width: 768px) {
@@ -355,12 +416,11 @@ nav ul .login-register {
         <div class="main-content">
             <h1>Việc làm bạn đã lưu</h1>
 
-            <!-- Saved Jobs Section -->
             <div class="saved-jobs">
                 <!-- Job 1 -->
                 <div class="job-card">
                     <div class="job-logo">
-                        <img src="assets/ketoan.PNG"Smart-Link Logo">
+                        <img src="assets/ketoan.PNG" alt="Smart-Link Logo">
                     </div>
                     <div class="job-info">
                         <h3>Kế Toán Tổng Hợp</h3>
@@ -372,10 +432,11 @@ nav ul .login-register {
                         </div>
                     </div>
                     <div class="job-action">
-                        <button class="save-button"><i class="fa fa-heart"></i></button>
+                        <!-- Nút bấm đơn giản -->
+                        <button class="simple-button">Lưu công việc</button>
                     </div>
                 </div>
-
+            
                 <!-- Job 2 -->
                 <div class="job-card">
                     <div class="job-logo">
@@ -391,10 +452,12 @@ nav ul .login-register {
                         </div>
                     </div>
                     <div class="job-action">
-                        <button class="save-button"><i class="fa fa-heart"></i></button>
+                        <!-- Nút bấm đơn giản -->
+                        <button class="simple-button">Lưu công việc</button>
                     </div>
                 </div>
             </div>
+            </div>            
         </div>
     </div>
 </body>
