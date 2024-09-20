@@ -6,28 +6,44 @@
     <link rel="icon" href="assets/logo.png" type="image/x-icon">
     <title>Việc làm đã ứng tuyển | Vieclam24h</title>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var username = localStorage.getItem('username'); // Lấy thông tin username từ Local Storage
-            var userActions = document.getElementById('user-actions'); // Phần tử sẽ thay đổi nội dung
-    
-            if (username) {
-                // Nếu người dùng đã đăng nhập, hiển thị email và nút đăng xuất
-                userActions.innerHTML = `
-                    <a href="updateprofile.html" id="update-profile-link" class="header-e btn btn-bvb update-profile-btn">Cập nhật hồ sơ</a>
-                    <span class="separator">|</span>
-                    <span class="header-e btn btn-bvb username-display">Xin chào, ${username}</span>
-                    <span class="separator">|</span>
-                    <a href="#" id="logout-link" class="header-e btn btn-bvb logout-btn">Thoát</a>
-                `;
-    
-                // Xử lý sự kiện khi người dùng nhấn nút Đăng xuất
-                document.getElementById('logout-link').addEventListener('click', function(event) {
-                    event.preventDefault(); // Ngăn hành động mặc định
-                    localStorage.removeItem('username'); // Xóa username khỏi Local Storage
-                    window.location.reload(); // Tải lại trang để cập nhật giao diện
-                });
-            }
-        });
+        // Đối với nút "Marketing"
+document.getElementById('push-button-marketing').addEventListener('click', function() {
+    // Lấy thông tin từ hàng "Marketing"
+    const row = document.getElementById('push-button-marketing').closest('tr');
+    const jobTitle = row.querySelector('td:nth-child(1)').textContent.trim();
+    const resumeType = row.querySelector('td:nth-child(2)').textContent.trim();
+    const submissionDate = row.querySelector('td:nth-child(3)').textContent.trim();
+    const status = row.querySelector('.status-dropdown').value;
+
+    // Gọi hàm smartech với thông tin đã lấy
+    smartech('identify', username);
+    smartech('dispatch', 'Form Submit', {
+        jobTitle: jobTitle,
+        resumeType: resumeType,
+        submissionDate: submissionDate,
+        status: status
+    });
+});
+
+// Đối với nút "Kế toán"
+document.getElementById('push-button-accounting').addEventListener('click', function() {
+    // Lấy thông tin từ hàng "Kế toán"
+    const row = document.getElementById('push-button-accounting').closest('tr');
+    const jobTitle = row.querySelector('td:nth-child(1)').textContent.trim();
+    const resumeType = row.querySelector('td:nth-child(2)').textContent.trim();
+    const submissionDate = row.querySelector('td:nth-child(3)').textContent.trim();
+    const status = row.querySelector('.status-dropdown').value;
+
+    // Gọi hàm smartech với thông tin đã lấy
+    smartech('identify', username);
+    smartech('dispatch', 'Form Submit', {
+        jobTitle: jobTitle,
+        resumeType: resumeType,
+        submissionDate: submissionDate,
+        status: status
+    });
+});
+
     </script>
       <script src='//cdnt.netcoresmartech.com/smartechclient.js'></script>
       <script>
@@ -365,7 +381,7 @@
                                 <button class="edit-button">Lựa chọn</button>
                             </td>
                             <td>
-                                <button class="push-button">Đẩy trạng thái hồ sơ về Panel</button>
+                                <button id="push-button-marketing" class="push-button">Đẩy trạng thái hồ sơ về Panel</button>
                             </td>
                         </tr>
                         <tr>
@@ -384,7 +400,7 @@
                                 <button class="edit-button">Lựa chọn</button>
                             </td>
                             <td>
-                                <button class="push-button">Đẩy trạng thái hồ sơ về Panel</button>
+                                <button id="push-button-accounting" class="push-button">Đẩy trạng thái hồ sơ về Panel</button>
                             </td>
                         </tr>
                     </tbody>
