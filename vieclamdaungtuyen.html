@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="assets/logo.png" type="image/x-icon">
-    <title>Profile - Vieclam24h.vn</title>
+    <title>Việc làm đã ứng tuyển | Vieclam24h</title>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var username = localStorage.getItem('username'); // Lấy thông tin username từ Local Storage
@@ -34,7 +34,36 @@
       smartech('create', 'ADGMOT35CHFLVDHBJNIG50K96BSUH1PDDQFBSPLEV97HGG26AH0G' );
       smartech('register', '504ea8ca2cb4400285e24f2d3705750b');
       smartech('identify', '');
+      document.addEventListener('DOMContentLoaded', function() {
+            smartech('dispatch', 'Applied Job', {
+                'url': window.location.href,
+                'title': document.title
+            });
+        });
       </script>
+      <script>
+      document.querySelectorAll('.push-button').forEach(function(button) {
+        button.addEventListener('click', function() {
+            // Lấy hàng tương ứng của nút "push"
+            const row = button.closest('tr');
+    
+            // Lấy thông tin từ hàng đó
+            const jobTitle = row.querySelector('td:nth-child(1)').textContent.trim();
+            const resumeType = row.querySelector('td:nth-child(2)').textContent.trim();
+            const submissionDate = row.querySelector('td:nth-child(3)').textContent.trim();
+            const status = row.querySelector('.status-dropdown').value;
+    
+            // Thực hiện hàm smartech với thông tin đã lấy
+            smartech('identify', username);
+            smartech('dispatch', 'Form Submit', {
+                jobTitle: jobTitle,
+                resumeType: resumeType,
+                submissionDate: submissionDate,
+                status: status
+            });
+        });
+    });
+    </script>
     <style>
         * {
             margin: 0;
