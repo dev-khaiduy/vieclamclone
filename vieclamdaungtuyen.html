@@ -7,6 +7,30 @@
     <title>Việc làm đã ứng tuyển | Vieclam24h</title>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            var username = localStorage.getItem('username'); // Lấy thông tin username từ Local Storage
+            var userActions = document.getElementById('user-actions'); // Phần tử sẽ thay đổi nội dung
+    
+            if (username) {
+                // Nếu người dùng đã đăng nhập, hiển thị email và nút đăng xuất
+                userActions.innerHTML = `
+                    <a href="updateprofile.html" id="update-profile-link" class="header-e btn btn-bvb update-profile-btn">Cập nhật hồ sơ</a>
+                    <span class="separator">|</span>
+                    <span class="header-e btn btn-bvb username-display">Xin chào, ${username}</span>
+                    <span class="separator">|</span>
+                    <a href="#" id="logout-link" class="header-e btn btn-bvb logout-btn">Thoát</a>
+                `;
+    
+                // Xử lý sự kiện khi người dùng nhấn nút Đăng xuất
+                document.getElementById('logout-link').addEventListener('click', function(event) {
+                    event.preventDefault(); // Ngăn hành động mặc định
+                    localStorage.removeItem('username'); // Xóa username khỏi Local Storage
+                    window.location.reload(); // Tải lại trang để cập nhật giao diện
+                });
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
             // Đối với nút "Marketing"
             document.getElementById('push-button-marketing').addEventListener('click', function() {
                 // Lấy thông tin từ hàng "Marketing"
@@ -24,7 +48,6 @@
                     submissionDate: submissionDate,
                     status: status
                 });
-
                 console.log("Đẩy thành công cho công việc Marketing");
             });
 
