@@ -29,6 +29,36 @@
             }
         });
     </script>
+    <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                // Lắng nghe sự kiện submit của form
+                document.getElementById('job-search-form').addEventListener('submit', function(event) {
+                    // Ngăn chặn form submit mặc định để xử lý theo cách của bạn
+                    event.preventDefault();
+                    
+                    // Lấy dữ liệu từ các dropdown
+                    const position = event.target.querySelector('select[name="position"]').options[event.target.querySelector('select[name="position"]').selectedIndex].textContent;
+                    const industry = event.target.querySelector('select[name="industry"]').options[event.target.querySelector('select[name="industry"]').selectedIndex].textContent;
+                    const location = event.target.querySelector('select[name="location"]').options[event.target.querySelector('select[name="location"]').selectedIndex].textContent;
+
+                    smartech('dispatch', 'Job Search', {
+                        position: position, // Vị trí đã chọn (ví dụ: Kế toán)
+                        industry: industry, // Ngành nghề đã chọn (ví dụ: Bán hàng)
+                        location: location // Địa điểm đã chọn (ví dụ: TP.HCM)
+                    });
+
+                    // In ra console để kiểm tra
+                    console.log("Tìm việc với thông tin:", {
+                        position: position,
+                        industry: industry,
+                        location: location
+                    });
+
+                    // Xử lý gì đó thêm nếu cần, hoặc có thể submit form thật sự nếu muốn
+                    // this.submit(); // Nếu bạn muốn cho phép submit tiếp
+                });
+            });
+    </script>
       <script src='//cdnt.netcoresmartech.com/smartechclient.js'></script>
       <script>
       smartech('create', 'ADGMOT35CHFLVDHBJNIG50K96BSUH1PDDQFBSPLEV97HGG26AH0G' );
@@ -410,7 +440,7 @@
                 <select name="position" required>
                     <option value="" disabled selected>Chọn vị trí muốn ứng tuyển...</option>
                     <option value="ke-toan">Kế toán</option>
-                    <option value="kiem-toan">Kiểm toán</option>
+                    <option value="kiem-toan">Marketing</option>
                 </select>
                 <select name="industry" required>
                     <option value="" disabled selected>Chọn ngành nghề...</option>
