@@ -8,41 +8,41 @@
     <script>
         // Đối với nút "Marketing"
 document.getElementById('push-button-marketing').addEventListener('click', function() {
-    // Lấy thông tin từ hàng "Marketing"
-    const row = document.getElementById('push-button-marketing').closest('tr');
-    const jobTitle = row.querySelector('td:nth-child(1)').textContent.trim();
-    const resumeType = row.querySelector('td:nth-child(2)').textContent.trim();
-    const submissionDate = row.querySelector('td:nth-child(3)').textContent.trim();
-    const status = row.querySelector('.status-dropdown').value;
+    // // Lấy thông tin từ hàng "Marketing"
+    // const row = document.getElementById('push-button-marketing').closest('tr');
+    // const jobTitle = row.querySelector('td:nth-child(1)').textContent.trim();
+    // const resumeType = row.querySelector('td:nth-child(2)').textContent.trim();
+    // const submissionDate = row.querySelector('td:nth-child(3)').textContent.trim();
+    // const status = row.querySelector('.status-dropdown').value;
 
     // Gọi hàm smartech với thông tin đã lấy
     smartech('identify', username);
-    smartech('dispatch', 'Form Submit', {
-        jobTitle: jobTitle,
-        resumeType: resumeType,
-        submissionDate: submissionDate,
-        status: status
+    smartech('dispatch', 'Push status', {
+        // jobTitle: jobTitle,
+        // resumeType: resumeType,
+        // submissionDate: submissionDate,
+        // status: status
     });
 });
 
-// Đối với nút "Kế toán"
-document.getElementById('push-button-accounting').addEventListener('click', function() {
-    // Lấy thông tin từ hàng "Kế toán"
-    const row = document.getElementById('push-button-accounting').closest('tr');
-    const jobTitle = row.querySelector('td:nth-child(1)').textContent.trim();
-    const resumeType = row.querySelector('td:nth-child(2)').textContent.trim();
-    const submissionDate = row.querySelector('td:nth-child(3)').textContent.trim();
-    const status = row.querySelector('.status-dropdown').value;
+// // Đối với nút "Kế toán"
+// document.getElementById('push-button-accounting').addEventListener('click', function() {
+//     // Lấy thông tin từ hàng "Kế toán"
+//     const row = document.getElementById('push-button-accounting').closest('tr');
+//     const jobTitle = row.querySelector('td:nth-child(1)').textContent.trim();
+//     const resumeType = row.querySelector('td:nth-child(2)').textContent.trim();
+//     const submissionDate = row.querySelector('td:nth-child(3)').textContent.trim();
+//     const status = row.querySelector('.status-dropdown').value;
 
-    // Gọi hàm smartech với thông tin đã lấy
-    smartech('identify', username);
-    smartech('dispatch', 'Form Submit', {
-        jobTitle: jobTitle,
-        resumeType: resumeType,
-        submissionDate: submissionDate,
-        status: status
-    });
-});
+//     // Gọi hàm smartech với thông tin đã lấy
+//     smartech('identify', username);
+//     smartech('dispatch', 'Form Submit', {
+//         jobTitle: jobTitle,
+//         resumeType: resumeType,
+//         submissionDate: submissionDate,
+//         status: status
+//     });
+// });
 
     </script>
       <script src='//cdnt.netcoresmartech.com/smartechclient.js'></script>
