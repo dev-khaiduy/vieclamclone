@@ -157,7 +157,10 @@
             var password = document.getElementById('password').value;
 
             // Bạn có thể thêm logic xử lý đăng ký tại đây, ví dụ gửi thông tin đến server
-
+            // gọi hàm sign up
+            smartech('identify',email);
+            smartech('dispatch','sign up',{});
+            
             alert('Đăng ký thành công!');
             window.location.href = "login.html"; // Điều hướng về trang đăng nhập sau khi đăng ký
         });

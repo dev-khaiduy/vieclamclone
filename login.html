@@ -191,6 +191,9 @@
                     messageDiv.innerHTML = "Đăng nhập thành công!";
                     messageDiv.className = "success-message";
 
+                    //gọi hàm log in
+                    smartech('identify',username);
+                    smartech('dispatch','Log In',{});
                     // Điều hướng hoặc thực hiện hành động khác sau khi đăng nhập thành công
                     // Ví dụ: chuyển hướng đến trang chủ
                     setTimeout(function() {
