@@ -9,22 +9,44 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Đối với nút "Marketing"
             document.getElementById('push-button-marketing').addEventListener('click', function() {
-                console.log("Nút 'push-button-marketing' đã được nhấn!");
+                // Lấy thông tin từ hàng "Marketing"
+                const row = document.getElementById('push-button-marketing').closest('tr');
+                const jobTitle = row.querySelector('td:nth-child(1)').textContent.trim();
+                const resumeType = row.querySelector('td:nth-child(2)').textContent.trim();
+                const submissionDate = row.querySelector('td:nth-child(3)').textContent.trim();
+                const status = row.querySelector('.status-dropdown').value;
 
                 // Gọi hàm smartech với thông tin đã lấy
                 smartech('identify', username);
-                smartech('dispatch', 'Push status', {});
-                console.log("Đẩy thành công");
+                smartech('dispatch', 'Push status', {
+                    jobTitle: jobTitle,
+                    resumeType: resumeType,
+                    submissionDate: submissionDate,
+                    status: status
+                });
+
+                console.log("Đẩy thành công cho công việc Marketing");
             });
 
             // Đối với nút "Kế toán"
             document.getElementById('push-button-accounting').addEventListener('click', function() {
-                console.log("Nút 'push-button-accounting' đã được nhấn!");
+                // Lấy thông tin từ hàng "Kế toán"
+                const row = document.getElementById('push-button-accounting').closest('tr');
+                const jobTitle = row.querySelector('td:nth-child(1)').textContent.trim();
+                const resumeType = row.querySelector('td:nth-child(2)').textContent.trim();
+                const submissionDate = row.querySelector('td:nth-child(3)').textContent.trim();
+                const status = row.querySelector('.status-dropdown').value;
 
                 // Gọi hàm smartech với thông tin đã lấy
                 smartech('identify', username);
-                smartech('dispatch', 'Push status', {});
-                console.log("Đẩy thành công");
+                smartech('dispatch', 'Push status', {
+                    jobTitle: jobTitle,
+                    resumeType: resumeType,
+                    submissionDate: submissionDate,
+                    status: status
+                });
+
+                console.log("Đẩy thành công cho công việc Kế toán");
             });
         });
     </script>
