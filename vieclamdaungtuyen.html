@@ -30,48 +30,56 @@
         });
     </script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Đối với nút "Marketing"
-            document.getElementById('push-button-marketing').addEventListener('click', function() {
-                // Lấy thông tin từ hàng "Marketing"
-                const row = document.getElementById('push-button-marketing').closest('tr');
-                const jobTitle = row.querySelector('td:nth-child(1)').textContent.trim();
-                const resumeType = row.querySelector('td:nth-child(2)').textContent.trim();
-                const submissionDate = row.querySelector('td:nth-child(3)').textContent.trim();
-                const status = row.querySelector('.status-dropdown').value;
+     document.addEventListener('DOMContentLoaded', function() {
+    // Đối với nút "Marketing"
+    document.getElementById('push-button-marketing').addEventListener('click', function() {
+        // Lấy thông tin từ hàng "Marketing"
+        const row = document.getElementById('push-button-marketing').closest('tr');
+        const jobTitle = row.querySelector('td:nth-child(1)').textContent.trim();
+        const resumeType = row.querySelector('td:nth-child(2)').textContent.trim();
+        const submissionDate = row.querySelector('td:nth-child(3)').textContent.trim();
+        
+        // Lấy dropdown trạng thái và văn bản hiển thị của tùy chọn đã chọn
+        const statusDropdown = row.querySelector('.status-dropdown');
+        const statusText = statusDropdown.options[statusDropdown.selectedIndex].textContent; // Chỉ lấy text
 
-                // Gọi hàm smartech với thông tin đã lấy
-                // smartech('identify', username);
-                smartech('dispatch', 'Push status', {
-                    jobTitle: jobTitle,
-                    resumeType: resumeType,
-                    submissionDate: submissionDate,
-                    status: status
-                });
-                console.log("Đẩy thành công cho công việc Marketing");
-            });
-
-            // Đối với nút "Kế toán"
-            document.getElementById('push-button-accounting').addEventListener('click', function() {
-                // Lấy thông tin từ hàng "Kế toán"
-                const row = document.getElementById('push-button-accounting').closest('tr');
-                const jobTitle = row.querySelector('td:nth-child(1)').textContent.trim();
-                const resumeType = row.querySelector('td:nth-child(2)').textContent.trim();
-                const submissionDate = row.querySelector('td:nth-child(3)').textContent.trim();
-                const status = row.querySelector('.status-dropdown').value;
-
-                // Gọi hàm smartech với thông tin đã lấy
-                // smartech('identify', username);
-                smartech('dispatch', 'Push status', {
-                    jobTitle: jobTitle,
-                    resumeType: resumeType,
-                    submissionDate: submissionDate,
-                    status: status
-                });
-
-                console.log("Đẩy thành công cho công việc Kế toán");
-            });
+        // Gọi hàm smartech với thông tin đã lấy
+        // smartech('identify', username);
+        smartech('dispatch', 'Push status', {
+            jobTitle: jobTitle, // Tên việc làm
+            resumeType: resumeType, // Hồ sơ ứng tuyển
+            submissionDate: submissionDate, // Ngày nộp
+            statusText: statusText // Trạng thái hiển thị (ví dụ: Hồ sơ được tải)
         });
+
+        console.log("Đẩy thành công cho công việc Marketing với trạng thái:", statusText);
+    });
+
+    // Đối với nút "Kế toán"
+    document.getElementById('push-button-accounting').addEventListener('click', function() {
+        // Lấy thông tin từ hàng "Kế toán"
+        const row = document.getElementById('push-button-accounting').closest('tr');
+        const jobTitle = row.querySelector('td:nth-child(1)').textContent.trim();
+        const resumeType = row.querySelector('td:nth-child(2)').textContent.trim();
+        const submissionDate = row.querySelector('td:nth-child(3)').textContent.trim();
+        
+        // Lấy dropdown trạng thái và văn bản hiển thị của tùy chọn đã chọn
+        const statusDropdown = row.querySelector('.status-dropdown');
+        const statusText = statusDropdown.options[statusDropdown.selectedIndex].textContent; // Chỉ lấy text
+
+        // Gọi hàm smartech với thông tin đã lấy
+        // smartech('identify', username);
+        smartech('dispatch', 'Push status', {
+            jobTitle: jobTitle, // Tên việc làm
+            resumeType: resumeType, // Hồ sơ ứng tuyển
+            submissionDate: submissionDate, // Ngày nộp
+            statusText: statusText // Trạng thái hiển thị (ví dụ: Hồ sơ được tải)
+        });
+
+        console.log("Đẩy thành công cho công việc Kế toán với trạng thái:", statusText);
+    });
+});
+
     </script>
     </script>
       <script src='//cdnt.netcoresmartech.com/smartechclient.js'></script>
