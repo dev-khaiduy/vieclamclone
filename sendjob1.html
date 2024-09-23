@@ -37,7 +37,7 @@
                         smartech('dispatch', 'Job Application', {
                             jobTitle: jobTitle, // Tên công việc
                             companyName: companyName, // Tên công ty
-                            selectedJobOptionTitle: selectedJobOptionTitle, // Hồ sơ lựa chọn (ví dụ: Nhân Viên Kế Toán)
+                            selectedCV: selectedJobOptionTitle, // Hồ sơ lựa chọn (ví dụ: Nhân Viên Kế Toán)
                             submissionTime: formattedDate, // Thời gian nộp hồ sơ là thời gian hiện tại
                             notification: notification // Trạng thái nhận thông báo việc làm (true/false)
                         });
@@ -46,7 +46,7 @@
                         console.log("Thông tin ứng tuyển:", {
                             jobTitle: jobTitle,
                             companyName: companyName,
-                            selectedJobOptionTitle: selectedJobOptionTitle,
+                            selectedCV: selectedJobOptionTitle,
                             submissionTime: formattedDate, // Thời gian nộp hồ sơ là thời gian hiện tại
                             notification: notification // True nếu đã chọn, false nếu bỏ chọn
                         });
