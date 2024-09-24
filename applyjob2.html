@@ -31,39 +31,39 @@
       smartech('create', 'ADGMOT35CHFLVDHBJNIG50K96BSUH1PDDQFBSPLEV97HGG26AH0G' );
       smartech('register', '504ea8ca2cb4400285e24f2d3705750b');
       smartech('identify', '');
-      document.addEventListener('DOMContentLoaded', function() {
-    // Lấy các thông số từ HTML
-    var jobTitle = document.querySelector('.job-title-details h1').innerText;
-    var company = document.querySelector('.job-title-details p').innerText;
-    var salary = document.querySelector('.job-info span:nth-child(1)').innerText.split(': ')[1];
-    var deadline = document.querySelector('.job-info span:nth-child(2)').innerText.split(': ')[1];
-    var location = document.querySelector('.job-info span:nth-child(3)').innerText.split(': ')[1];
-    
-    // Lấy thông tin từ phần "Thông tin chung"
-    var postDate = document.querySelector('.job-details-section ul li:nth-child(1)').innerText.split(': ')[1];
-    var jobLevel = document.querySelector('.job-details-section ul li:nth-child(2)').innerText.split(': ')[1];
-    var numVacancies = document.querySelector('.job-details-section ul li:nth-child(3)').innerText.split(': ')[1];
-    var employmentType = document.querySelector('.job-details-section ul li:nth-child(4)').innerText.split(': ')[1];
-    var experience = document.querySelector('.job-details-section ul li:nth-child(5)').innerText.split(': ')[1];
-    var industry = document.querySelector('.job-details-section ul li:nth-child(6)').innerText.split(': ')[1];
-    
-    // Gửi thông tin qua hàm smartech
-    smartech('dispatch', 'Job Detail', {
-        'url': window.location.href,
-        'title': document.title,
-        'jobTitle': jobTitle,
-        'company': company,
-        'salary': salary,
-        'deadline': deadline,
-        'location': location,
-        'postDate': postDate,
-        'jobLevel': jobLevel,
-        'numVacancies': numVacancies,
-        'employmentType': employmentType,
-        'experience': experience,
-        'industry': industry
+        document.addEventListener('DOMContentLoaded', function() {
+        // Lấy các thông số từ HTML
+        var jobTitle = document.querySelector('.job-title-details h1').innerText;
+        var company = document.querySelector('.job-title-details p').innerText;
+        var salary = document.querySelector('.job-info span:nth-child(1)').innerText.split(': ')[1];
+        var deadline = document.querySelector('.job-info span:nth-child(2)').innerText.split(': ')[1];
+        var location = document.querySelector('.job-info span:nth-child(3)').innerText.split(': ')[1];
+        
+        // Lấy thông tin từ phần "Thông tin chung"
+        var postDate = document.querySelector('.job-details-section ul li:nth-child(1)').innerText.split(': ')[1];
+        var jobLevel = document.querySelector('.job-details-section ul li:nth-child(2)').innerText.split(': ')[1];
+        var numVacancies = document.querySelector('.job-details-section ul li:nth-child(3)').innerText.split(': ')[1];
+        var employmentType = document.querySelector('.job-details-section ul li:nth-child(4)').innerText.split(': ')[1];
+        var experience = document.querySelector('.job-details-section ul li:nth-child(5)').innerText.split(': ')[1];
+        var industry = document.querySelector('.job-details-section ul li:nth-child(6)').innerText.split(': ')[1];
+        
+        // Gửi thông tin qua hàm smartech
+        smartech('dispatch', 'Job Detail', {
+            'url': window.location.href,
+            'title': document.title,
+            'jobTitle': jobTitle,
+            'company': company,
+            'salary': salary,
+            'deadline': deadline,
+            'location': location,
+            'postDate': postDate,
+            'jobLevel': jobLevel,
+            'numVacancies': numVacancies,
+            'employmentType': employmentType,
+            'experience': experience,
+            'industry': industry
+        });
     });
-});
       </script>
     <style>
         * {
